@@ -241,7 +241,7 @@ All hyperparameters were optimized using Weights & Biases Bayesian sweeps:
 - **Code**: MIT
 - **Model**: ModernGBERT base model: [Research-only RAIL-M license](https://huggingface.co/LSX-UniWue/ModernGBERT_134M/blob/main/license.md)
 - **Fine-tuned models**: Inherit ModernGBERT's research-only license
-- **Dataset**: GPL-3.0. Follow the license terms when using or redistributing the data.
+- **Dataset**: [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html). Follow the license terms when using or redistributing the data.
 
 ## 📖 Citation (Preliminary)
 
