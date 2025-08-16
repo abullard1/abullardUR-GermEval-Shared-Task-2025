@@ -1,0 +1,194 @@
+---
+title: "Baseline systems"
+output: html_notebook
+---
+
+```{r setup, results='hide', echo=FALSE}
+options(scipen = 999)
+```
+
+
+The **Large Language Model (LLM)** Qwen2.5 with 32 billion parameters was used as the base system for violence detection. The LLM was prompted in a few-shot scenario for binary classification of tweets. Ollama was used for local running of the LLM.
+
+# 1. Importing the test data
+
+The necessary packages may still need to be installed. 
+
+```{r warning=FALSE, message=FALSE}
+# Loading all necessary libraries 
+library(jsonlite)
+library(httr)
+library(readr)
+library(stringr)
+library(rebus)
+```
+
+The LLM is applied directly to the test data. No fine-tuning was performed on the training data. Accordingly, only the test data needs to be imported. 
+
+```{r}
+# Importing the test data  
+test_vio <- read_csv2("vio_test.csv") # Path needs to be adjusted 
+```
+
+# 2. Prompt Engineering
+
+The LLM was assigned the role of a filter system via a system prompt, whose task is to monitor German tweets. In addition, the LLM was given the definition of violence-related statements, which was based on the definition provided to the annotators during the annotation process. Further instructions ensured that the LLM provided the output in the desired format, i.e. that it only outputs the class labels (‘true’/‘false’).  
+
+```{r}
+# System prompt for vio
+system_prompt_vio <- "FROM qwen2.5:32b SYSTEM \"\"\"Instruction:\n You are a filter system in a social network that specialises in monitoring German tweets. Your task is to detect worrying positive attitudes towards violence.\nConsider the following definitions: A tweet contains a worrying violence-related statement if it trivialises, advocates, glorifies, incites violence or announces the use of violence. Violence is understood to mean active, aggressive behaviour, i.e. the infliction of physical, sexual or psychological violence. If you predict a violence-related statement, your response is \"true\". If you predict a no-violence-related statement, you respond with \"false\". You only respond with one single word and not more! \"\"\" "
+```
+
+The user prompt explained the classification task to the LLM and instructed it again to only output the class labels (not explanations, for example). The examples required for in-context learning corresponded to those presented to the annotators and can also be found on the [competition website](https://www.codabench.org/competitions/4963/). 
+
+```{r}
+# User Prompt for Violence classification
+user_prompt_vio <- 'Determine whether the input tweet contains a worrying violence-related statement. Respond with a single word. Do not provide explanations or notes. Your only possible responses, regarding if the provided text contains a worrying violence-related statement are true and false. \nExamples of classification are:\n@UserXY Wenn ich diesen Typ schon sehe, könnte ich ihn an die Wand stellen 🤬 response: \"true\"\nKnallt das ganze linksgrün Dumme Antifa Gesindel einfach ab! #LinksfaschistenStoppen  response: \"true\"\nMan stelle sich vor, eine Gruppe on 40 jungen MÄNNERN […], teilweise BEWAFFNET […], versucht ILLEGAL eine Grenze zu übertreten, […] und dann wundert man sich, wenn das Feuer gerechtfertigterweise eröffnet wird.  response: \"true\"\n@UserXY endlich hat jemand den Mut ergriffen und dem Mistkerl die Fresse poliert. Der hat alles schlimme der Welt und mehr verdient dieser erbärmliche Perverse und geistig Behinderte #Volksverräter response: \"true\"\n@UserXY DU BIST TEIL dieser ganz GEZIELT INSZENIERTEN LÜGE über Lynchjustiz und Aufruf zu Mord und versuchst alle durch FREI ERFUNDENE HORRORGeschichten in PANIK zu VERSETZEN! #Lügenpresse  response: \"true\"\n\"[…] Der 27- jährige Syrer wird verdächtigt, zwischen 2011 und 2014 als Mitglied von Jabhat al- Nusra bzw. Kataib Al Faroug im syrischen Bürgerkrieg gegen Anhänger bzw. Truppen des Assad- Regimes gekämpft und auf diese geschossen zu haben\", sagte Peter Oehm, der Leiter des Landesamtes für Verfassungsschutz.  response: \"false\" Input: '
+```
+
+# 3. Defining the classification function
+
+The following function is used to classify a single tweet using the LLM. It checks whether the LLM has actually provided a valid response (`true` or `false`). If the LLM did not output one of the two class labels or an error occurred, the LLM is asked again to classify the tweet. After ten unsuccessful attempts, the classification of the tweet is abandoned and the output 'Finally failed in id: <id>' is returned instead. 
+
+```{r}
+classify_llm <- function(index, system_prompt, user_prompt, texts){
+  error_occurred <- TRUE
+  n_trials <- 0
+  while (error_occurred && n_trials < 10) {
+    # Increase the number of attempts 
+    n_trials <- n_trials + 1
+    tryCatch({
+      # Specify query (user and system prompt) and parameters as JSON
+      request_body <- list(
+        model = "qwen2.5:32b",
+        prompt = str_escape(paste0(user_prompt, texts[index])),
+        format = "json",
+        seed = "123",
+        stream = FALSE,
+        modelfile = str_escape(system_prompt))
+      request_body_json <- toJSON(request_body, auto_unbox = TRUE)
+      
+      # Send query to local server 
+      result <- POST("141.55.226.254:11434/api/generate",
+                     body = request_body_json,
+                     add_headers(.headers = c("Content-Type"="application/json")))
+      
+      # Extract content of the request 
+      Output <- httr::content(result)
+      # Extract response of the LLM 
+      Output_response <- fromJSON(Output$response)
+      # Only permissible answers for the binary classification 
+      possible_responses <- c("true", "false")
+      # extract the desired answer from the possibly messy output
+      result <- unlist(str_extract_all(Output_response, pattern = or1(possible_responses)))
+      # Normalise the output by converting it to lower case 
+      result <- tolower(result)
+      # Return result if a correct answer was provided 
+      if(result %in% possible_responses){
+        error_occurred <- FALSE 
+      } else{
+          cat("Result does not match with the expected class labels. Current result:", result, "Try again for the ",n_trials, "time.\n")
+      }
+  }, error = function(e) {
+      cat("The following error occurred:", e$message, "in tweet with id",  index, ". Try again for the",n_trials, "time. \n")
+  })
+  }
+  
+  if (error_occurred) {
+    result <- paste("Finally failed in id:", index)
+  }
+  
+  return(result)
+}
+```
+
+# 4. Classification of test data 
+
+All tweets in the test data were classified one after the other by the LLM using the previously defined function. 
+
+```{r}
+library(pbapply)
+texts_vio <- test_vio$description
+pred_qwen_vio <- pbsapply(seq_along(texts_vio), classify_llm, system_prompt_vio, user_prompt_vio, texts_vio)
+```
+
+In three tweets, the LLM did not provide one of the two possible class labels (‘true’/‘false’). These were resubmitted to the LLM for classification. The output of the unclassified tweets was not listed here for clarity reasons. From this, it was apparent that the LLM was able to determine the class label of tweets quoting open letters, for example. 
+
+```{r}
+# Extract all unique answers
+unique(pred_qwen_vio)
+
+library(dplyr)
+# Extract subset of unclassified tweets 
+misclassified_tweets <- test_vio[c(1153, 1573, 2704), ]
+
+# Unclassified tweets (Output is too long to present)
+misclassified_tweets$description
+```
+
+```{r}
+# Another attempt to classify the three tweets
+pred_qwen_vio_unknown <- pbsapply(seq_along(misclassified_tweets$description), classify_llm, system_prompt_vio, user_prompt_vio, misclassified_tweets$description)
+pred_qwen_vio_unknown
+```
+
+Since Qwen was unable to classify the three tweets, they were classified as `false`. 
+
+```{r}
+# Convert labels in factors
+pred_qwen_vio[c(1153, 1573, 2704)] <- c("false", "false", "false")
+```
+
+The IDs and predicted class labels for the corresponding tweets were then summarised in a table. 
+
+```{r}
+library(tibble)
+pred_qwen_vio_df <- tibble(id = test_vio$id, pred = pred_qwen_vio)
+head(pred_qwen_vio_df)
+```
+
+# 5. Evaluation 
+
+The predictions based on the test data were compared with the gold standard in order to calculate classic evaluation metrics. 
+
+```{r}
+# Importing the gold standard for violence detection 
+gold_vio <- read_csv2("vio_gold.csv") # Path needs to be adjusted 
+```
+
+The ground truth was added as a column to the LLM predictions. 
+
+```{r}
+pred_qwen_vio_df$ref <- gold_vio$VIO 
+head(pred_qwen_vio_df)
+```
+
+For evaluation purposes, a few adjustments to the format of the predicted and ground truth labels were necessary. The ground truth labels were converted to the Boolean data type. Both the ground truth and the predictions were then converted to factors. 
+
+```{r}
+# Convert Boolean (TRUE/ FALSE) values in the gold standard to strings (‘true’/ ‘false’) 
+pred_qwen_vio_df$ref <- ifelse(pred_qwen_vio_df$ref == TRUE, "true", "false")
+
+# Convert labels in factors
+pred_qwen_vio_df$pred <- factor(pred_qwen_vio_df$pred, c("true", "false"))
+pred_qwen_vio_df$ref <- factor(pred_qwen_vio_df$ref, c("true", "false"))
+```
+
+Subsequently, evaluation measures such as precision, recall and F1 measure, as well as the macro and weighted average of these measures across the two classes, were calculated. The Macro F1 measure serves as the primary evaluation metric in the competition, which is used to rank participants' results in the leaderboard. 
+
+```{r message = FALSE}
+library(crfsuite)
+eval_qwen_vio <- crf_evaluation(pred = pred_qwen_vio_df$pred, obs = pred_qwen_vio_df$ref, labels = c("true", "false"))
+```
+
+```{r}
+# Output of individual results for both classes 
+eval_qwen_vio$bylabel
+```
+
+```{r}
+# Output of the average and weighted measures
+eval_vio <- tibble(metric = c("accuracy", "weighted precision", "weighted recall", "weighted specificity", "weighted f1", "macro precision", "macro recall", "macro specificity", "macro f1"), 
+                   value = eval_qwen_vio$overall)
+eval_vio
+```
