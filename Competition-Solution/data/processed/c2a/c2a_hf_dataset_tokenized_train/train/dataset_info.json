@@ -1,0 +1,41 @@
+{
+  "citation": "GermEval 2025: A Shared Task for the Detection of Harmful Content on Social Media",
+  "description": "Training data for binary detection of call-to-actions in German tweets from right-wing extremist network (2014-2016).",
+  "features": {
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "description": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "labels": {
+      "names": [
+        "False",
+        "True"
+      ],
+      "_type": "ClassLabel"
+    },
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "https://www.codabench.org/competitions/4963/",
+  "license": "Research use only - shared within GermEval 2025 competition",
+  "supervised_keys": {
+    "input": "description",
+    "output": "C2A"
+  }
+}
