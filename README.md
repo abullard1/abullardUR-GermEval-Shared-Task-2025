@@ -195,7 +195,7 @@ Each processed dataset contains:
 - `{task}_hf_dataset_tokenized/` - Tokenized trial split
 - `{task}_hf_dataset_tokenized_train/` - Tokenized training split
 
-> **Note**: Trial splits were divided into train/validation/test. Training splits were divided into train/validation only, relying on the organizers' hidden test set for final evaluation.
+> **Note**: Trial splits were divided into train/validation/test based on the trial dataset. Training splits were divided into train/validation/test with the test split being the organizers' hidden test set for final evaluation.
 
 >  The training dataset is also available on Huggingface 🤗 [here](https://huggingface.co/datasets/abullard1/germeval-2025-harmful-content-detection-training-dataset).
 
