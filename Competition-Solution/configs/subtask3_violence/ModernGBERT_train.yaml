@@ -1,0 +1,82 @@
+# Experiment: ModernGBERT Training for Violence Detection
+
+# Experiment Identity
+experiment_type: "train"
+model_family: "moderngbert"
+model_checkpoint: "LSX-UniWue/ModernGBERT_134M"
+
+# Dataset Configuration
+dataset_details:
+  hf_dataset_path_suffix: "vio/vio_hf_dataset_train"
+  hf_dataset_tokenized_path_suffix: "vio/vio_hf_dataset_tokenized_train"
+  label_column: "VIO"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "moderngbert"
+
+wandb_tags_add:
+  - "moderngbert"
+  - "train_run"
+  - "focal_loss" # This was switched out depending on the approach (Class Weights + Focal Loss Approach or Focal Loss Approach)
+  - "gamma_sweep" # This was switched out depending on the approach (Class Weights + Focal Loss Approach or Focal Loss Approach)
+
+wandb_notes: "Training run for ModernGBERT on Violence Detection (training data) with focal loss and gamma optimization."
+
+# Model Configuration
+model_config:
+  num_labels: 2
+  id2label: {0: "False", 1: "True"}
+  label2id: {"False": 0, "True": 1}
+  trust_remote_code: true
+
+# Focal Loss Configuration (Default gamma value, pre-sweep)
+gamma: 2.0
+
+# Training Arguments Override (Default values, pre-sweep)
+training_arguments:
+  learning_rate: 2.0e-5
+  warmup_steps: 500
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  num_train_epochs: 50
+
+# Weights and Biases Sweep Configuration
+# These configurations represent sensible ranges within which the Weights & Biases Sweep Functionality
+# will apply a bayesian optimization strategy to find the best hyperparameters to maximize the macro-f1 on the validation set
+# Note: Values in square brackets are fixed discrete choices. Values with uniform distribution are continuous.
+wandb_sweep_config:
+  method: bayes
+  metric:
+    name: eval_f1-macro
+    goal: maximize # Goal is to maximize the macro-f1 score on the validation set
+  parameters:
+    learning_rate:
+      values: [1e-5, 2e-5, 3e-5, 5e-5, 1e-4] # Learning rates to try
+    
+    warmup_steps:
+      values: [100, 300, 500] # Warmup steps to try
+    
+    weight_decay:
+      distribution: uniform # Weight decay to try
+      min: 0.01
+      max: 0.1
+    
+    num_train_epochs:
+      values: [3, 5, 8] # Number of training epochs to try
+    
+    per_device_train_batch_size:
+      values: [8, 16] # Per device train batch size to try
+    
+    per_device_eval_batch_size:
+      values: [16, 32] # Per device eval batch size to try
+    
+    # Gamma parameter for focal loss approaches
+    gamma:
+      distribution: uniform # Focal Loss Gamma to try
+      min: 0.5
+      max: 3.0
+      
+  early_terminate: # Early termination for sweep runs that perform poorly (Allows us to focus compute on more promising runs instead of wasting compute on runs that are not performing well from the get go)
+    type: hyperband
+    min_iter: 3 

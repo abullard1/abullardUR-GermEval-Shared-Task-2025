@@ -1,0 +1,31 @@
+# Experiment: EuroBERT Baseline for Call2Action (trial data) (Not used for final submissions)
+
+# Experiment Identity
+experiment_type: "baseline"
+model_family: "eurobert"
+model_checkpoint: "EuroBERT/EuroBERT-210m"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "eurobert210m"
+
+wandb_tags_add:
+  - "eurobert_210m"
+  - "baseline_run"
+
+wandb_notes: "Baseline run for EuroBERT-210m on Call2Action (trial data)."
+
+# Model Configuration
+model_config:
+  num_labels: 2
+  id2label: {0: "False", 1: "True"}
+  label2id: {"False": 0, "True": 1}
+  trust_remote_code: true
+
+# Training Arguments Override
+training_arguments:
+  learning_rate: 5.0e-5
+  warmup_steps: 100
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 4
+  num_train_epochs: 3

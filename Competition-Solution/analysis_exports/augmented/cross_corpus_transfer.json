@@ -1,0 +1,74 @@
+{
+  "dataset": "GermEval2018 test",
+  "evaluation_type": "zero-shot cross-corpus transfer from GermEval 2025 models",
+  "sample_size_full": 3532,
+  "generated_at": "2026-03-11 19:15:21",
+  "models": [
+    {
+      "subtask": "C2A",
+      "strategy": "Baseline CE",
+      "macro_f1_1000": 0.459,
+      "macro_f1_full": 0.449,
+      "delta_f1": -0.01,
+      "minority_recall_1000": 0.087,
+      "minority_recall_full": 0.083,
+      "delta_minority_recall": -0.004,
+      "sample_size_full": 3532
+    },
+    {
+      "subtask": "C2A",
+      "strategy": "CWCE",
+      "macro_f1_1000": 0.474,
+      "macro_f1_full": 0.469,
+      "delta_f1": -0.005,
+      "minority_recall_1000": 0.099,
+      "minority_recall_full": 0.105,
+      "delta_minority_recall": 0.006,
+      "sample_size_full": 3532
+    },
+    {
+      "subtask": "C2A",
+      "strategy": "CW+FL",
+      "macro_f1_1000": 0.467,
+      "macro_f1_full": 0.461,
+      "delta_f1": -0.006,
+      "minority_recall_1000": 0.096,
+      "minority_recall_full": 0.097,
+      "delta_minority_recall": 0.001,
+      "sample_size_full": 3532
+    },
+    {
+      "subtask": "VIO",
+      "strategy": "Baseline CE",
+      "macro_f1_1000": 0.441,
+      "macro_f1_full": 0.436,
+      "delta_f1": -0.005,
+      "minority_recall_1000": 0.04,
+      "minority_recall_full": 0.042,
+      "delta_minority_recall": 0.002,
+      "sample_size_full": 3532
+    },
+    {
+      "subtask": "VIO",
+      "strategy": "CWCE",
+      "macro_f1_1000": 0.474,
+      "macro_f1_full": 0.474,
+      "delta_f1": -0.0,
+      "minority_recall_1000": 0.08,
+      "minority_recall_full": 0.087,
+      "delta_minority_recall": 0.007,
+      "sample_size_full": 3532
+    },
+    {
+      "subtask": "VIO",
+      "strategy": "CW+FL",
+      "macro_f1_1000": 0.486,
+      "macro_f1_full": 0.48,
+      "delta_f1": -0.006,
+      "minority_recall_1000": 0.102,
+      "minority_recall_full": 0.102,
+      "delta_minority_recall": 0.0,
+      "sample_size_full": 3532
+    }
+  ]
+}

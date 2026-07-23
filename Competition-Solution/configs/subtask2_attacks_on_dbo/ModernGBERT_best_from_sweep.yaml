@@ -1,0 +1,48 @@
+# Config that was used for the final DBO submission training run (Class Weights + Focal Loss Approach)
+# These parameters reflect the best-performing run from the sweep.
+# The model configuration aligns with the best sweep settings for this approach.
+
+# Best hyperparameters from W&B Sweep (bumbling-sweep-4: F1-macro = 0.66886)
+# Generated from sweep ID: tttb1wf3
+
+# Experiment Identity
+experiment_type: "best"
+model_family: "moderngbert"
+model_checkpoint: "LSX-UniWue/ModernGBERT_134M"
+
+# Dataset Configuration
+dataset_details:
+  hf_dataset_path_suffix: "dbo/dbo_hf_dataset_train"
+  hf_dataset_tokenized_path_suffix: "dbo/dbo_hf_dataset_tokenized_train"
+  label_column: "DBO"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "moderngbert"
+
+wandb_tags_add:
+  - "moderngbert"
+  - "best_hyperparams"
+  - "focal_loss"
+  - "sweep_optimized"
+
+wandb_notes: "Final training run with best hyperparameters from DBO sweep. Class Weights + Focal Loss Approach."
+
+# Model Configuration
+model_config:
+  num_labels: 4
+  id2label: {0: "nothing", 1: "criticism", 2: "agitation", 3: "subversive"}
+  label2id: {"nothing": 0, "criticism": 1, "agitation": 2, "subversive": 3}
+  trust_remote_code: true
+
+# Focal Loss Configuration
+gamma: 1.537031438857423
+
+# Training arguments
+training_arguments:
+  learning_rate: !!float 3e-5
+  num_train_epochs: 8
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 16
+  warmup_steps: 100
+  weight_decay: 0.02697230274594707

@@ -1,0 +1,31 @@
+# Experiment: EuroBERT Baseline for Attacks on DBO (trial data) (Not used for final submissions)
+
+# Experiment Identity
+experiment_type: "baseline"
+model_family: "eurobert"
+model_checkpoint: "EuroBERT/EuroBERT-210m"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "eurobert210m"
+
+wandb_tags_add:
+  - "eurobert_210m"
+  - "baseline_run"
+
+wandb_notes: "Baseline run for EuroBERT-210m on Attacks on DBO (trial data)."
+
+# Model Configuration
+model_config:
+  num_labels: 4
+  id2label: {0: "nothing", 1: "criticism", 2: "agitation", 3: "subversive"}
+  label2id: {"nothing": 0, "criticism": 1, "agitation": 2, "subversive": 3}
+  trust_remote_code: true
+
+# Training Arguments Override
+training_arguments:
+  learning_rate: 5.0e-5
+  warmup_steps: 100
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 4
+  num_train_epochs: 3

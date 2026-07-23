@@ -1,0 +1,48 @@
+# Config that was used for the final C2A submission trainin run (Class Weights + Focal Loss Approach)
+# These are the parameters that are left from the final C2A focal loss training run.
+# The model configuration was switched out for the best parameters gathered from the sweeps for each approach.
+
+# Best hyperparameters from W&B Sweep (helpful-sweep-2: F1-macro = 0.83738)
+# Generated from sweep ID: x4cxix6l
+
+# Experiment Identity
+experiment_type: "best"
+model_family: "moderngbert"
+model_checkpoint: "LSX-UniWue/ModernGBERT_134M"
+
+# Dataset Configuration
+dataset_details:
+  hf_dataset_path_suffix: "c2a/c2a_hf_dataset_train"
+  hf_dataset_tokenized_path_suffix: "c2a/c2a_hf_dataset_tokenized_train"
+  label_column: "C2A"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "moderngbert"
+
+wandb_tags_add:
+  - "moderngbert"
+  - "best_hyperparams"
+  - "focal_loss"
+  - "sweep_optimized"
+
+wandb_notes: "Final training run with best hyperparameters from sweep. Class Weights + Focal Loss Approach."
+
+# Model Configuration
+model_config:
+  num_labels: 2
+  id2label: {0: "False", 1: "True"}
+  label2id: {"False": 0, "True": 1}
+  trust_remote_code: true
+
+# Focal Loss Configuration
+gamma: 0.5991901750340594
+
+# Training arguments
+training_arguments:
+  learning_rate: !!float 5e-5
+  num_train_epochs: 5
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 16
+  warmup_steps: 100
+  weight_decay: 0.02266266442255068

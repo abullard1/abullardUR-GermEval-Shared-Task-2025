@@ -1,0 +1,74 @@
+{
+  "C2A_Baseline CE": {
+    "subtask": "C2A",
+    "strategy": "Baseline CE",
+    "ece": 0.026514258235692978,
+    "mce": 0.14339196681976318,
+    "overconf_rate": 0.03372681281618887,
+    "n_samples": 1368
+  },
+  "C2A_CWCE": {
+    "subtask": "C2A",
+    "strategy": "CWCE",
+    "ece": 0.0401272252202034,
+    "mce": 0.2881556749343872,
+    "overconf_rate": 0.035303146584804296,
+    "n_samples": 1368
+  },
+  "C2A_CW+FL": {
+    "subtask": "C2A",
+    "strategy": "CW+FL",
+    "ece": 0.03429676592350006,
+    "mce": 0.31708985567092896,
+    "overconf_rate": 0.029535864978902954,
+    "n_samples": 1368
+  },
+  "DBO_Baseline CE": {
+    "subtask": "DBO",
+    "strategy": "Baseline CE",
+    "ece": 0.09690169990062714,
+    "mce": 0.6064453125,
+    "overconf_rate": 0.09424460431654676,
+    "n_samples": 1491
+  },
+  "DBO_CWCE": {
+    "subtask": "DBO",
+    "strategy": "CWCE",
+    "ece": 0.06953048706054688,
+    "mce": 0.4398193359375,
+    "overconf_rate": 0.07539353769676885,
+    "n_samples": 1491
+  },
+  "DBO_CW+FL": {
+    "subtask": "DBO",
+    "strategy": "CW+FL",
+    "ece": 0.030853254720568657,
+    "mce": 0.6158447265625,
+    "overconf_rate": 0.041340782122905026,
+    "n_samples": 1491
+  },
+  "VIO_Baseline CE": {
+    "subtask": "VIO",
+    "strategy": "Baseline CE",
+    "ece": 0.052944477647542953,
+    "mce": 0.6911272406578064,
+    "overconf_rate": 0.04842931937172775,
+    "n_samples": 1557
+  },
+  "VIO_CWCE": {
+    "subtask": "VIO",
+    "strategy": "CWCE",
+    "ece": 0.04092814028263092,
+    "mce": 0.31573486328125,
+    "overconf_rate": 0.0411240575736806,
+    "n_samples": 1557
+  },
+  "VIO_CW+FL": {
+    "subtask": "VIO",
+    "strategy": "CW+FL",
+    "ece": 0.08308527618646622,
+    "mce": 0.2853841185569763,
+    "overconf_rate": 0.011428571428571429,
+    "n_samples": 1557
+  }
+}

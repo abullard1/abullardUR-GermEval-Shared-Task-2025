@@ -1,0 +1,253 @@
+{
+  "subtask": "c2a",
+  "bootstrap_comparisons": [
+    {
+      "metric": "accuracy",
+      "observed_difference": -0.01388888888888884,
+      "confidence_interval": {
+        "lower": -0.023391812865497075,
+        "upper": -0.004385964912280604
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": -0.030362573789215253,
+      "confidence_interval": {
+        "lower": -0.056791774042312754,
+        "upper": -0.004880655519962548
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": -0.05108886036911042,
+      "confidence_interval": {
+        "lower": -0.08439194637543747,
+        "upper": -0.018796468578018564
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": -0.01104684788895316,
+      "confidence_interval": {
+        "lower": -0.03814309340588693,
+        "upper": 0.016018980883501416
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": -0.06159331130074497,
+      "confidence_interval": {
+        "lower": -0.11439244705095597,
+        "upper": -0.010920935184578548
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "accuracy",
+      "observed_difference": 0.00511695906432752,
+      "confidence_interval": {
+        "lower": -0.00511695906432752,
+        "upper": 0.016081871345029253
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": 0.004015129400786854,
+      "confidence_interval": {
+        "lower": -0.02397293927918026,
+        "upper": 0.03089867053541125
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": 0.01821099754502975,
+      "confidence_interval": {
+        "lower": -0.011655666884105492,
+        "upper": 0.04830585759112834
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": -0.01393869288606131,
+      "confidence_interval": {
+        "lower": -0.04795971415803722,
+        "upper": 0.016541127597439354
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": 0.005624510235750613,
+      "confidence_interval": {
+        "lower": -0.05005003616257725,
+        "upper": 0.05960876272467821
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "accuracy",
+      "observed_difference": 0.01900584795321636,
+      "confidence_interval": {
+        "lower": 0.008040935672514626,
+        "upper": 0.029970760233918203
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": 0.03437770319000211,
+      "confidence_interval": {
+        "lower": 0.005971564416962922,
+        "upper": 0.0629126803232526
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": 0.06929985791414017,
+      "confidence_interval": {
+        "lower": 0.037504187976823755,
+        "upper": 0.10387806802184724
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": -0.0028918449971081506,
+      "confidence_interval": {
+        "lower": -0.035283922185719054,
+        "upper": 0.028685592834245627
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": 0.06721782153649558,
+      "confidence_interval": {
+        "lower": 0.011533338328593299,
+        "upper": 0.12386202174260409
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    }
+  ],
+  "mcnemar_tests": [
+    {
+      "statistic": 6.8936170212765955,
+      "p_value": 0.008650405895097536,
+      "is_significant": true,
+      "contingency_table": [
+        [
+          1265,
+          14
+        ],
+        [
+          33,
+          56
+        ]
+      ],
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-v2-best-cw"
+    },
+    {
+      "statistic": 0.6101694915254238,
+      "p_value": 0.43472400072864315,
+      "is_significant": false,
+      "contingency_table": [
+        [
+          1246,
+          33
+        ],
+        [
+          26,
+          63
+        ]
+      ],
+      "model1": "train-c2a-moderngbert-baseline-v1",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    },
+    {
+      "statistic": 10.416666666666666,
+      "p_value": 0.0012488309880884258,
+      "is_significant": true,
+      "contingency_table": [
+        [
+          1255,
+          43
+        ],
+        [
+          17,
+          53
+        ]
+      ],
+      "model1": "train-c2a-moderngbert-v2-best-cw",
+      "model2": "train-c2a-moderngbert-best-v4-best-fl"
+    }
+  ]
+}

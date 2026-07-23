@@ -1,0 +1,58 @@
+name: Setup Test
+
+on:
+  push:
+    paths:
+      - 'setup.sh'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/setup-test.yml'
+  pull_request:
+    paths:
+      - 'setup.sh'
+      - 'pyproject.toml'
+      - 'uv.lock'
+  workflow_dispatch:
+
+jobs:
+  setup-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            label: "Linux (Ubuntu 22.04)"
+          - os: macos-14
+            label: "macOS (Apple Silicon)"
+          - os: macos-15
+            label: "macOS 15 (Apple Silicon)"
+
+    runs-on: ${{ matrix.os }}
+    name: "${{ matrix.label }}"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Run setup.sh (CI mode)
+        run: bash setup.sh --ci
+
+      - name: Verify critical imports
+        run: |
+          uv run python -c "
+          import torch, transformers, datasets, sklearn, pandas, numpy
+          import wandb, scipy, statsmodels, torchmetrics, matplotlib, seaborn
+          import rich, nltk, yaml, evaluate
+          from dotenv import load_dotenv
+          from convokit import Corpus, Speaker, Utterance, FightingWords
+          print('All imports OK')
+          print(f'torch {torch.__version__}')
+          if hasattr(torch.backends, 'mps'):
+              print(f'MPS available: {torch.backends.mps.is_available()}')
+          print(f'CUDA available: {torch.cuda.is_available()}')
+          "

@@ -1,0 +1,50 @@
+[project]
+name = "cost-sensitive-transformers"
+version = "1.0.0"
+description = "Evaluating Cost-Sensitive Loss Functions for Transformer-Based German Harmful Content Detection"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Samuel Ruairí Bullard" }]
+dependencies = [
+    # Core data processing
+    "pandas==2.2.3",
+    "numpy==1.26.4",
+    "clean-text==0.6.0",
+    "validators==0.35.0",
+    # Deep learning & NLP
+    "torch==2.6.0",
+    "transformers==4.50.3",
+    "datasets==3.5.0",
+    "evaluate==0.4.3",
+    "scikit-learn==1.6.1",
+    # Visualisation and experiment tracking
+    "matplotlib==3.10.0",
+    "seaborn==0.13.2",
+    "wandb==0.19.8",
+    # Utilities
+    "nltk==3.9.1",
+    "python-dotenv==1.1.0",
+    "pyyaml==6.0.2",
+    "ipywidgets==8.1.7",
+    # Statistical analysis and evaluation
+    "scipy==1.15.3",
+    "statsmodels==0.14.4",
+    "torchmetrics==1.8.2",
+    # Miscellaneous
+    "jupyter==1.1.1",
+    "rich==14.0.0",
+    # convokit runtime deps (convokit itself installed --no-deps in setup.sh)
+    "pymongo>=4.0",
+    "requests>=2.28",
+    "tqdm>=4.0",
+]
+
+[project.optional-dependencies]
+# Requires CUDA toolkit headers and compilation from source.
+# Install with: uv sync --extra cuda
+cuda = ["flash-attn>=2.5.0"]
+
+[tool.uv]
+# convokit==4.0.0 is installed with --no-deps in setup.sh because its
+# declared dependencies pull ~5 GB of unused packages (unsloth, tensorflow,
+# bitsandbytes). Only the 3 runtime deps listed above are actually needed.

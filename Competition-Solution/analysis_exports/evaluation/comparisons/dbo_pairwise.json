@@ -1,0 +1,201 @@
+{
+  "subtask": "dbo",
+  "bootstrap_comparisons": [
+    {
+      "metric": "accuracy",
+      "observed_difference": 0.0006706908115359234,
+      "confidence_interval": {
+        "lower": -0.012072434607645954,
+        "upper": 0.014084507042253502
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": -0.045906022003570524,
+      "confidence_interval": {
+        "lower": -0.1310702662877173,
+        "upper": -0.004610013170744368
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": 0.031758992520226514,
+      "confidence_interval": {
+        "lower": -0.021562843401330703,
+        "upper": 0.16743570022598017
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": -0.08296850554991897,
+      "confidence_interval": {
+        "lower": -0.1617874844320465,
+        "upper": -0.04131431192523825
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 2 significantly better",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": -0.03643629921911862,
+      "confidence_interval": {
+        "lower": -0.0818537867566544,
+        "upper": 0.007092803365269188
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-v2-best-cw"
+    },
+    {
+      "metric": "accuracy",
+      "observed_difference": 0.021462105969148215,
+      "confidence_interval": {
+        "lower": 0.0067069081153587895,
+        "upper": 0.036887994634473564
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": 0.0024798580849484386,
+      "confidence_interval": {
+        "lower": -0.07574569481770753,
+        "upper": 0.078553998877994
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": 0.06691557381706703,
+      "confidence_interval": {
+        "lower": 0.0036435845907118987,
+        "upper": 0.27428964179538884
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": -0.049286085471777485,
+      "confidence_interval": {
+        "lower": -0.12063488255994656,
+        "upper": 0.021230224836499716
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": 0.028108755621063963,
+      "confidence_interval": {
+        "lower": -0.02190891526505002,
+        "upper": 0.07877972539371364
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-baseline-v1",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "accuracy",
+      "observed_difference": 0.020791415157612292,
+      "confidence_interval": {
+        "lower": 0.005365526492287054,
+        "upper": 0.03621730382293764
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-dbo-moderngbert-v2-best-cw",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_f1",
+      "observed_difference": 0.04838588008851896,
+      "confidence_interval": {
+        "lower": 0.006971654384594546,
+        "upper": 0.1279259868668426
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-dbo-moderngbert-v2-best-cw",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_precision",
+      "observed_difference": 0.03515658129684052,
+      "confidence_interval": {
+        "lower": -0.07350240092382841,
+        "upper": 0.1782865295870867
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-v2-best-cw",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "macro_recall",
+      "observed_difference": 0.033682420078141484,
+      "confidence_interval": {
+        "lower": -0.0027064032900186055,
+        "upper": 0.11121860740810269
+      },
+      "is_significant": false,
+      "confidence_level": 0.95,
+      "interpretation": "No significant difference",
+      "model1": "train-dbo-moderngbert-v2-best-cw",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    },
+    {
+      "metric": "matthews_corrcoef",
+      "observed_difference": 0.06454505484018258,
+      "confidence_interval": {
+        "lower": 0.018873085247077804,
+        "upper": 0.11250942860616102
+      },
+      "is_significant": true,
+      "confidence_level": 0.95,
+      "interpretation": "Model 1 significantly better",
+      "model1": "train-dbo-moderngbert-v2-best-cw",
+      "model2": "train-dbo-moderngbert-best-v3-best-fl"
+    }
+  ],
+  "mcnemar_tests": []
+}

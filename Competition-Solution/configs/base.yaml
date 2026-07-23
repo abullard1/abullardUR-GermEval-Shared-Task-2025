@@ -1,0 +1,84 @@
+# Global Configuration
+
+# Weights & Biases
+wandb:
+  entity: "uni-regensburg"
+  project: "Bachelors-Thesis"
+  notes: "Default run notes, override in experiment config if needed."
+  dotenv_path: ".env"
+  watch_model_log: "all"
+  watch_model_log_freq: 1000
+  save_model_as_artifact: true
+  save_code: false
+  sync_tensorboard: false
+  
+  artifact:
+    name_template: "{model_arch}-{subtask_id}-{experiment_type}"
+    model_type: "model"
+    description_template: "Fine-tuned {model_arch} for {subtask_name} (GermEval 2025)"
+    portfolio_path_template: "{project}/{model_arch}_{subtask_id}_models"
+
+# Paths Configuration
+paths:
+  output_dir_base: "models/finetuned_models"
+  logging_dir_base: "logs"
+  processed_data_dir_name: "data/processed"
+  base_models_dir_name: "models/base_models"
+
+# Dataset Modes
+dataset_modes:
+  trial:
+    suffix: "trial"
+    description: "Trial phase dataset"
+  train:
+    suffix: "train" 
+    description: "Training phase dataset"
+
+# Default Settings
+default_experiment_type: "baseline"
+
+# Dataset Split Names
+dataset_splits:
+  train: "train"
+  validation: "validation"
+  test: "test"
+
+# Global Training Arguments
+training_arguments:
+  # Core Settings
+  seed: 42
+  num_train_epochs: 50
+  gradient_checkpointing: true
+  
+  # Optimizer
+  optim: "adamw_torch"
+  lr_scheduler_type: "linear"
+  weight_decay: 0.01
+  
+  # Batch Size
+  auto_find_batch_size: false
+  
+  # Evaluation & Saving
+  eval_strategy: "epoch"
+  save_strategy: "epoch"
+  save_total_limit: 0
+  load_best_model_at_end: true # Loads the best model at the end of the training
+  metric_for_best_model: "eval_f1-macro" # Metric for best model will be the f1-macro score on the validation set
+  greater_is_better: true # A greater macro-F1 score is better and the "best" model will be the one with the highest macro-F1 score
+  
+  # Logging
+  logging_strategy: "steps"
+  logging_steps: 100
+  logging_first_step: true
+  report_to: ["wandb", "tensorboard"] # Reports the metrics to Weights & Biases and TensorBoard
+  include_for_metrics: []
+  
+  # Performance
+  fp16: true # Mixed precision training
+  max_grad_norm: null
+  disable_tqdm: false
+  gradient_checkpointing_kwargs: { "use_reentrant": false }
+
+# Callback Configuration
+callbacks:
+  early_stopping_patience: 5 # How many epochs a training run is not allowed to improve the validation macro-F1 score before stopping

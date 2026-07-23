@@ -1,0 +1,57 @@
+{
+  "model_name": "train-c2a-moderngbert-v2-best-cw",
+  "subtask": "c2a",
+  "is_binary": true,
+  "metrics": {
+    "accuracy": 0.9488304093567251,
+    "macro_f1": 0.8481031933860805,
+    "macro_precision": 0.8637258345649393,
+    "macro_recall": 0.8341237709658762,
+    "matthews_corrcoef": 0.6972214782765889,
+    "per_class_metrics": {
+      "class_0": {
+        "precision": 0.967121090617482,
+        "recall": 0.9765182186234818,
+        "f1_score": 0.9717969379532635,
+        "support": 1235
+      },
+      "class_1": {
+        "precision": 0.7603305785123967,
+        "recall": 0.6917293233082706,
+        "f1_score": 0.7244094488188977,
+        "support": 133
+      }
+    },
+    "roc_auc": 0.9341268150132417,
+    "avg_precision": 0.7485155542098827,
+    "confidence_intervals": {
+      "accuracy": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_f1": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_precision": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_recall": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "matthews_corrcoef": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "roc_auc": {
+        "lower": NaN,
+        "upper": NaN
+      }
+    },
+    "baseline_f1": 0.59,
+    "improvement": 0.25810319338608056,
+    "beats_baseline": true
+  }
+}

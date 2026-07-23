@@ -1,0 +1,63 @@
+{
+  "model_name": "train-dbo-moderngbert-best-v3-best-fl",
+  "subtask": "dbo",
+  "is_binary": false,
+  "metrics": {
+    "accuracy": 0.8584842387659289,
+    "macro_f1": 0.6192681850032714,
+    "macro_precision": 0.6773084120735855,
+    "macro_recall": 0.631946059791201,
+    "matthews_corrcoef": 0.5355567844378741,
+    "per_class_metrics": {
+      "class_0": {
+        "precision": 0.9404466501240695,
+        "recall": 0.9059760956175299,
+        "f1_score": 0.9228896103896104,
+        "support": 1255
+      },
+      "class_1": {
+        "precision": 0.5828220858895705,
+        "recall": 0.5900621118012422,
+        "f1_score": 0.5864197530864198,
+        "support": 161
+      },
+      "class_2": {
+        "precision": 0.38596491228070173,
+        "recall": 0.6984126984126984,
+        "f1_score": 0.4971751412429379,
+        "support": 63
+      },
+      "class_3": {
+        "precision": 0.8,
+        "recall": 0.3333333333333333,
+        "f1_score": 0.47058823529411764,
+        "support": 12
+      }
+    },
+    "confidence_intervals": {
+      "accuracy": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_f1": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_precision": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_recall": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "matthews_corrcoef": {
+        "lower": NaN,
+        "upper": NaN
+      }
+    },
+    "baseline_f1": 0.47,
+    "improvement": 0.14926818500327144,
+    "beats_baseline": true
+  }
+}

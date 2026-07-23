@@ -1,0 +1,40 @@
+# Experiment: ModernGBERT Baseline for Call2Action (Training Data)
+
+# Experiment Identity
+experiment_type: "baseline"
+model_family: "moderngbert"
+model_checkpoint: "LSX-UniWue/ModernGBERT_134M"
+
+# Dataset Configuration (training dataset)
+dataset_details:
+  hf_dataset_path_suffix: "c2a/c2a_hf_dataset_train"
+  hf_dataset_tokenized_path_suffix: "c2a/c2a_hf_dataset_tokenized_train"
+  label_column: "C2A"
+
+# W&B Configuration
+wandb_run_name_parts:
+  model_arch: "moderngbert"
+
+wandb_tags_add:
+  - "moderngbert"
+  - "baseline_run"
+
+wandb_notes: "Baseline run for ModernGBERT on Call2Action (training data)."
+
+# Model Configuration
+model_config:
+  num_labels: 2
+  id2label: {0: "False", 1: "True"}
+  label2id: {"False": 0, "True": 1}
+  trust_remote_code: true
+
+# Training Arguments Override (fixed baseline hyperparameters)
+training_arguments:
+  learning_rate: 2.0e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  num_train_epochs: 50
+
+

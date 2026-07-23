@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this code or the models, please cite the paper below."
+title: "GermEval 2025 Fine-tuning ModernGBERT for Harmful Content Detection"
+abstract: "Code, data, and fine-tuned models for the abullardUR submission to the GermEval 2025 Shared Task on harmful content detection in German social media, comparing unweighted cross-entropy, class-weighted cross-entropy, and class-weighted focal loss."
+authors:
+  - family-names: Bullard
+    given-names: Samuel
+date-released: 2025-08-15
+license: MIT
+url: "https://github.com/abullard1/abullardUR-GermEval-Shared-Task-2025"
+repository-code: "https://github.com/abullard1/abullardUR-GermEval-Shared-Task-2025"
+keywords:
+  - harmful content detection
+  - German social media
+  - ModernGBERT
+  - class imbalance
+  - focal loss
+  - GermEval 2025
+preferred-citation:
+  type: conference-paper
+  title: "abullardUR@GermEval Shared Task 2025: Fine-tuning ModernGBERT on Highly Imbalanced German Social Media for Harmful Content"
+  authors:
+    - family-names: Bullard
+      given-names: Samuel
+  editors:
+    - family-names: Wartena
+      given-names: Christian
+    - family-names: Heid
+      given-names: Ulrich
+  collection-title: "Proceedings of the 21st Conference on Natural Language Processing (KONVENS 2025): Workshops"
+  year: 2025
+  month: 9
+  start: 320
+  end: 326
+  publisher:
+    name: "HsH Applied Academics"
+  conference:
+    name: "KONVENS 2025"
+    city: "Hannover"
+    country: "DE"
+  url: "https://aclanthology.org/2025.konvens-2.25/"

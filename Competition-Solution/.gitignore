@@ -1,0 +1,34 @@
+# Python cache
+__pycache__/
+*.py[cod]
+**/.ipynb_checkpoints/
+
+# Local environment
+.venv/
+.env
+
+# Large HF cache files (>50MB)
+data/processed/**/cache-*.arrow
+data/processed/**/data-00000-of-00001.arrow
+
+# Base models
+models/base_models/
+
+# Large model files - exclude from all models except the 9 submission/baseline models
+models/finetuned_models/**/model.safetensors
+models/finetuned_models/**/tokenizer.json
+
+# Our 9 specific models (Tracked with LFS (GitHub Large File Storage))
+!models/finetuned_models/c2a/train-c2a-moderngbert-v2-best-cw/**/model.safetensors
+!models/finetuned_models/c2a/train-c2a-moderngbert-best-v4-best-fl/**/model.safetensors
+!models/finetuned_models/c2a/train-c2a-moderngbert-baseline-v1/**/model.safetensors
+!models/finetuned_models/dbo/train-dbo-moderngbert-v2-best-cw/**/model.safetensors
+!models/finetuned_models/dbo/train-dbo-moderngbert-best-v3-best-fl/**/model.safetensors
+!models/finetuned_models/dbo/train-dbo-moderngbert-baseline-v1/**/model.safetensors
+!models/finetuned_models/vio/train-vio-moderngbert-v2-best-cw/**/model.safetensors
+!models/finetuned_models/vio/train-vio-moderngbert-best-v3-best-fl/**/model.safetensors
+!models/finetuned_models/vio/train-vio-moderngbert-baseline-v1/**/model.safetensors
+
+# Trial EuroBERT model
+!models/finetuned_models/c2a/trial-c2a-eurobert210m-baseline-v1/**/model.safetensors
+!models/finetuned_models/c2a/trial-c2a-eurobert210m-baseline-v1/**/tokenizer.json

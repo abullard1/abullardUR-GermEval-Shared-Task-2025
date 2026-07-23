@@ -1,0 +1,57 @@
+{
+  "model_name": "train-vio-moderngbert-best-v3-best-fl",
+  "subtask": "vio",
+  "is_binary": true,
+  "metrics": {
+    "accuracy": 0.9383429672447013,
+    "macro_f1": 0.7612146307798482,
+    "macro_precision": 0.7730365513281072,
+    "macro_recall": 0.7505975289878166,
+    "matthews_corrcoef": 0.5231530754422794,
+    "per_class_metrics": {
+      "class_0": {
+        "precision": 0.9635488308115543,
+        "recall": 0.9702216066481995,
+        "f1_score": 0.9668737060041408,
+        "support": 1444
+      },
+      "class_1": {
+        "precision": 0.5825242718446602,
+        "recall": 0.5309734513274337,
+        "f1_score": 0.5555555555555556,
+        "support": 113
+      }
+    },
+    "roc_auc": 0.8902538425710294,
+    "avg_precision": 0.5490542574032218,
+    "confidence_intervals": {
+      "accuracy": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_f1": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_precision": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "macro_recall": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "matthews_corrcoef": {
+        "lower": NaN,
+        "upper": NaN
+      },
+      "roc_auc": {
+        "lower": NaN,
+        "upper": NaN
+      }
+    },
+    "baseline_f1": 0.69,
+    "improvement": 0.07121463077984824,
+    "beats_baseline": true
+  }
+}

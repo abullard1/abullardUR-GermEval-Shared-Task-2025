@@ -1,0 +1,27 @@
+# Subtask 2: Attacks on DBO - Base Configuration
+
+# Subtask Identity
+subtask_id: "dbo"
+subtask_name: "attacks_on_dbo"
+primary_metric: "f1-macro"
+num_labels: 4 # Number of labels for the subtask (4 for Attacks on DBO: nothing, criticism, agitation, subversive)
+
+# Dataset Configuration
+dataset_details:
+  hf_dataset_path_suffix: "dbo/dbo_hf_dataset"
+  hf_dataset_tokenized_path_suffix: "dbo/dbo_hf_dataset_tokenized"
+  label_column: "DBO" # The column name in the dataset that contains the labels
+
+# Tokenization Settings
+tokenization:
+  text_column_name: "description" # The column name in the dataset that contains the text
+  padding: "max_length" # Pads the text to processor.model_max_length (1024 for ModernGBERT)
+  truncation: true # Truncates the text to processor.model_max_length (1024 for ModernGBERT)
+  special_tokens: ["[@URL]", "[@EMAIL]", "[@PRE]", "[@POL]", "[@GRP]", "[@IND]"] # Special tokens (Anonymization tokens. Refer to the data/raw/dbo/readme.md for more information as well as the preprocessing notebook)
+
+# Evaluation Configuration
+evaluation:
+  metrics_to_load: ["f1", "accuracy", "precision", "recall"] # Metrics used for evaluation
+  f1_average_type: "macro" # The average type for the F1 score
+  precision_average_type: "macro" # The average type for the precision score
+  recall_average_type: "macro" # The average type for the recall score

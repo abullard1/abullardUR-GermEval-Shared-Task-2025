@@ -1,0 +1,199 @@
+{
+  "C2A": {
+    "n_samples": 1368,
+    "total_errors": {
+      "Baseline CE": 89,
+      "CWCE": 70,
+      "CW+FL": 96
+    },
+    "total_errors_any": 130,
+    "venn": {
+      "only_Baseline CE": 17,
+      "only_CWCE": 8,
+      "only_CW+FL": 27,
+      "Baseline CE+CWCE_only": 9,
+      "Baseline CE+CW+FL_only": 16,
+      "CWCE+CW+FL_only": 6,
+      "all_three": 47
+    },
+    "pairwise": {
+      "Baseline CE_vs_CWCE": {
+        "shared": 56,
+        "jaccard": 0.5436893203883495
+      },
+      "Baseline CE_vs_CW+FL": {
+        "shared": 63,
+        "jaccard": 0.5163934426229508
+      },
+      "CWCE_vs_CW+FL": {
+        "shared": 53,
+        "jaccard": 0.4690265486725664
+      }
+    },
+    "oracle_f1": 0.8185328185328186,
+    "individual_f1": {
+      "Baseline CE": 0.6715867158671587,
+      "CWCE": 0.7244094488188977,
+      "CW+FL": 0.6666666666666666
+    },
+    "per_class_shared": {
+      "False": {
+        "n": 1235,
+        "shared": 20,
+        "any": 78,
+        "shared_rate": 0.2564102564102564
+      },
+      "True": {
+        "n": 133,
+        "shared": 27,
+        "any": 52,
+        "shared_rate": 0.5192307692307693
+      }
+    },
+    "fp_fn": {
+      "Baseline CE": {
+        "FP": 47,
+        "FN": 42
+      },
+      "CWCE": {
+        "FP": 29,
+        "FN": 41
+      },
+      "CW+FL": {
+        "FP": 59,
+        "FN": 37
+      }
+    }
+  },
+  "DBO": {
+    "n_samples": 1491,
+    "total_errors": {
+      "Baseline CE": 179,
+      "CWCE": 180,
+      "CW+FL": 211
+    },
+    "total_errors_any": 294,
+    "venn": {
+      "only_Baseline CE": 30,
+      "only_CWCE": 33,
+      "only_CW+FL": 65,
+      "Baseline CE+CWCE_only": 20,
+      "Baseline CE+CW+FL_only": 19,
+      "CWCE+CW+FL_only": 17,
+      "all_three": 110
+    },
+    "pairwise": {
+      "Baseline CE_vs_CWCE": {
+        "shared": 130,
+        "jaccard": 0.5676855895196506
+      },
+      "Baseline CE_vs_CW+FL": {
+        "shared": 129,
+        "jaccard": 0.4942528735632184
+      },
+      "CWCE_vs_CW+FL": {
+        "shared": 127,
+        "jaccard": 0.4810606060606061
+      }
+    },
+    "oracle_f1": 0.7464518801628082,
+    "individual_f1": {
+      "Baseline CE": 0.6217480430882198,
+      "CWCE": 0.6676540650917904,
+      "CW+FL": 0.6192681850032714
+    },
+    "per_class_shared": {
+      "Nothing": {
+        "n": 1255,
+        "shared": 50,
+        "any": 163,
+        "shared_rate": 0.3067484662576687
+      },
+      "Criticism": {
+        "n": 161,
+        "shared": 37,
+        "any": 81,
+        "shared_rate": 0.4567901234567901
+      },
+      "Agitation": {
+        "n": 63,
+        "shared": 16,
+        "any": 41,
+        "shared_rate": 0.3902439024390244
+      },
+      "Subversive": {
+        "n": 12,
+        "shared": 7,
+        "any": 9,
+        "shared_rate": 0.7777777777777778
+      }
+    },
+    "fp_fn": null
+  },
+  "VIO": {
+    "n_samples": 1557,
+    "total_errors": {
+      "Baseline CE": 90,
+      "CWCE": 93,
+      "CW+FL": 96
+    },
+    "total_errors_any": 131,
+    "venn": {
+      "only_Baseline CE": 15,
+      "only_CWCE": 10,
+      "only_CW+FL": 14,
+      "Baseline CE+CWCE_only": 10,
+      "Baseline CE+CW+FL_only": 9,
+      "CWCE+CW+FL_only": 17,
+      "all_three": 56
+    },
+    "pairwise": {
+      "Baseline CE_vs_CWCE": {
+        "shared": 66,
+        "jaccard": 0.5641025641025641
+      },
+      "Baseline CE_vs_CW+FL": {
+        "shared": 65,
+        "jaccard": 0.5371900826446281
+      },
+      "CWCE_vs_CW+FL": {
+        "shared": 73,
+        "jaccard": 0.6293103448275862
+      }
+    },
+    "oracle_f1": 0.7142857142857143,
+    "individual_f1": {
+      "Baseline CE": 0.5108695652173914,
+      "CWCE": 0.5674418604651162,
+      "CW+FL": 0.5555555555555556
+    },
+    "per_class_shared": {
+      "False": {
+        "n": 1444,
+        "shared": 13,
+        "any": 61,
+        "shared_rate": 0.21311475409836064
+      },
+      "True": {
+        "n": 113,
+        "shared": 43,
+        "any": 70,
+        "shared_rate": 0.6142857142857143
+      }
+    },
+    "fp_fn": {
+      "Baseline CE": {
+        "FP": 24,
+        "FN": 66
+      },
+      "CWCE": {
+        "FP": 41,
+        "FN": 52
+      },
+      "CW+FL": {
+        "FP": 43,
+        "FN": 53
+      }
+    }
+  }
+}
